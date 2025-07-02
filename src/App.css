@@ -1,0 +1,494 @@
+/* ======= Dark Classy Theme: Superior Animation & Text Effects ======= */
+
+/* 1. Reset & Base Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #14171a;
+  box-sizing: border-box;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f4f6fa;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+/* === 2. Dull-to-Clear Reveal for All Sections === */
+body, .App, header, nav, section, .category-section, .posts-container, .post-card, footer {
+  opacity: 0;
+  filter: blur(7px) grayscale(0.7) brightness(0.9);
+  animation: dullToClear 1.2s cubic-bezier(.53,.01,.19,1.01) forwards;
+}
+.App { animation-delay: 0.1s; }
+header { animation-delay: 0.18s; }
+nav { animation-delay: 0.32s; }
+section { animation-delay: 0.42s; }
+.category-section { animation-delay: 0.54s; }
+.posts-container { animation-delay: 0.6s; }
+.post-card { animation-delay: 0.7s; }
+footer { animation-delay: 1s; }
+
+@keyframes dullToClear {
+  0% {
+    opacity: 0;
+    filter: blur(16px) grayscale(0.85) brightness(0.6);
+  }
+  65% {
+    opacity: 0.7;
+    filter: blur(3px) grayscale(0.2) brightness(1.05);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+/* === 3. Animated Text Fade-In, Slide, Flicker === */
+.animated-text {
+  opacity: 0;
+  transform: translateY(32px) scale(1.06) skewY(4deg);
+  filter: blur(7px) grayscale(0.5);
+  animation: textReveal 1.05s cubic-bezier(.42,0,.58,1) 0.8s forwards;
+  will-change: opacity, transform, filter;
+}
+@keyframes textReveal {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(1.08) skewY(7deg);
+    filter: blur(13px) grayscale(0.85);
+  }
+  70% {
+    opacity: 0.75;
+    transform: translateY(-6px) scale(1.01) skewY(1deg);
+    filter: blur(2px) grayscale(0.12);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Flicker for accent words */
+.flicker-accent {
+  animation: flicker 2.1s linear both;
+  color: #ffe59b;
+  text-shadow: 0 0 4px #b99bff, 0 0 12px #ffe59b33;
+}
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 31%, 100% { opacity: 1; filter: brightness(1.15);}
+  20%, 22%, 24%, 30% { opacity: 0.55; filter: brightness(0.8);}
+}
+
+/* === 4. App Container === */
+.App {
+  width: 100vw;
+  min-height: 100vh;
+  padding: 32px 0 24px 0;
+  background: linear-gradient(120deg, #181d23 0%, #22262b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation-delay: 0.1s;
+}
+
+/* === 5. Header === */
+header {
+  background: linear-gradient(100deg, #23272b 85%, #2d3140 100%);
+  color: #ffe59b;
+  padding: 44px 24px 36px 24px;
+  border-radius: 18px;
+  text-align: center;
+  width: 100%;
+  max-width: 950px;
+  margin-bottom: 10px;
+  box-shadow: 0 12px 45px 0 rgba(10,15,25,0.18);
+  border: 1.5px solid #23272b;
+  position: relative;
+  overflow: hidden;
+  animation-delay: 0.18s;
+}
+
+header::after {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -80px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, #3a3e4a 0%, transparent 80%);
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.7;
+  animation: fadeCircle 2.1s 0.85s both;
+}
+@keyframes fadeCircle {
+  from { opacity: 0; transform: scale(0.5);}
+  to { opacity: 0.7; transform: scale(1);}
+}
+
+header h1,
+header h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin-bottom: 0.9rem;
+  color: #ffe59b;
+  z-index: 1;
+  position: relative;
+  text-shadow: 0 4px 32px #23272b80;
+  opacity: 0;
+  animation: textPop 0.95s cubic-bezier(.44,0,.58,1) 0.5s forwards;
+}
+@keyframes textPop {
+  0% { opacity: 0; transform: scale(0.8) translateY(30px);}
+  70% { opacity: 0.8; transform: scale(1.04) translateY(-6px);}
+  100% { opacity: 1; transform: none;}
+}
+
+/* === 6. Stunning Typing Animation === */
+.typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #ffe59b;
+  animation: typing 2.8s steps(32, end) 0.8s forwards, blink-cursor 1s step-end infinite;
+  font-family: 'Fira Mono', 'Consolas', monospace;
+  font-size: 1.55rem;
+  color: #f4f6fa;
+  background: linear-gradient(90deg, #ffe59b 5%, #b99bff 55%, #61dafb 90%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: brightness(1.1) drop-shadow(0 4px 16px #2a223c88);
+  letter-spacing: 0.07em;
+  font-weight: 600;
+  line-height: 1.35;
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+@keyframes blink-cursor {
+  0%, 100% { border-color: #ffe59b; }
+  50% { border-color: transparent; }
+}
+
+/* Subtle shimmer for typing text */
+.typing::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 100%;
+  background: linear-gradient(120deg, transparent 70%, #ffe59b44 85%, transparent 100%);
+  opacity: 0.4;
+  pointer-events: none;
+  animation: shimmer 2.5s cubic-bezier(.4,0,.2,1) 2s 1;
+}
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* === 7. Navigation Bar === */
+nav {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  z-index: 1;
+  position: relative;
+  animation-delay: 0.32s;
+}
+nav a {
+  color: #ffe59b;
+  text-decoration: none;
+  font-size: 1.15rem;
+  padding: 10px 24px;
+  border-radius: 50px;
+  background: rgba(28, 33, 49, 0.82);
+  box-shadow: 0 2px 12px rgba(36,38,40,0.13);
+  font-weight: 500;
+  transition: background 0.22s, color 0.22s, box-shadow 0.18s, letter-spacing 0.13s, transform 0.17s;
+  position: relative;
+  letter-spacing: 0.03em;
+  border: 1.1px solid #2d3140;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  animation: navFade 0.7s cubic-bezier(.42,0,.58,1) 1.2s forwards;
+}
+nav a:nth-child(2) { animation-delay: 1.3s; }
+nav a:nth-child(3) { animation-delay: 1.4s; }
+nav a:nth-child(4) { animation-delay: 1.5s; }
+@keyframes navFade {
+  from { opacity: 0; transform: translateY(24px) scale(0.97);}
+  to { opacity: 1; transform: none;}
+}
+nav a:hover {
+  background: linear-gradient(93deg,#3d4256 55%, #23272b 100%);
+  color: #61dafb;
+  box-shadow: 0 6px 20px 0 #23272b66, 0 0 0 2px #61dafb22;
+  letter-spacing: 0.13em;
+  text-decoration: underline;
+  border-color: #61dafb;
+  transform: scale(1.04) translateY(-3px);
+}
+
+/* === 8. Section Titles & Layout === */
+section {
+  margin: 54px 0 40px 0;
+  width: 100%;
+  max-width: 980px;
+  padding: 0 18px;
+  position: relative;
+  z-index: 2;
+  background: none;
+  animation-delay: 0.42s;
+}
+h2, .category-title {
+  font-size: 2.1rem;
+  color: #ffe59b;
+  border-bottom: 3px solid #61dafb;
+  display: inline-block;
+  padding-bottom: 8px;
+  margin-bottom: 27px;
+  letter-spacing: 0.7px;
+  font-weight: 700;
+  background: none;
+  border-radius: 5px 5px 0 0;
+  box-shadow: none;
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  animation: textSectionReveal 0.85s 1.1s cubic-bezier(.42,0,.58,1) forwards;
+}
+@keyframes textSectionReveal {
+  to { opacity: 1; transform: none;}
+}
+.category-title {
+  color: #b99bff;
+  border-color: #b99bff;
+}
+
+/* === 9. Category Section === */
+.category-section {
+  margin: 30px 0;
+  padding: 26px 18px 22px 18px;
+  background: linear-gradient(110deg, #1f2233 85%, #222c2b 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #23272b22;
+  width: 100%;
+  max-width: 980px;
+  border: 1.5px solid #242a3b;
+  animation-delay: 0.54s;
+  opacity: 0;
+  animation: dullToClear 1.08s 0.54s cubic-bezier(.53,.01,.19,1.01) forwards;
+}
+.category-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  justify-content: center;
+  margin-top: 10px;
+}
+.category-link {
+  background: linear-gradient(90deg, #2e3350 40%, #1e2226 100%);
+  color: #ffe59b;
+  padding: 12px 30px;
+  border-radius: 28px;
+  text-decoration: none;
+  font-size: 1.13rem;
+  font-weight: 500;
+  border: 1.2px solid #b99bff;
+  box-shadow: 0 3px 12px #1b1b2b11;
+  transition: background 0.23s, color 0.22s, transform 0.19s, border 0.18s, letter-spacing 0.14s;
+  letter-spacing: 0.04em;
+  backdrop-filter: blur(1.5px);
+  opacity: 0;
+  transform: translateY(14px) scale(0.96);
+  animation: catLinks 0.8s 1.3s forwards cubic-bezier(.44,0,.58,1);
+}
+.category-link:nth-child(2) { animation-delay: 1.4s; }
+.category-link:nth-child(3) { animation-delay: 1.5s; }
+.category-link:nth-child(4) { animation-delay: 1.6s; }
+@keyframes catLinks {
+  to { opacity: 1; transform: none;}
+}
+.category-link:hover {
+  background: linear-gradient(90deg, #3b425c 60%, #4e3a6c 100%);
+  color: #61dafb;
+  transform: translateY(-4px) scale(1.06);
+  border: 1.5px solid #61dafb;
+  letter-spacing: 0.12em;
+}
+
+/* === 10. Posts Container === */
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+  animation-delay: 0.6s;
+  opacity: 0;
+  animation: dullToClear 1.1s 0.6s forwards;
+}
+
+/* === 11. Post Card === */
+
+
+
+/* --- Use this for .post-card --- */
+.post-card {
+  background: linear-gradient(99deg, #1c1f29 70%, #23272b 100%);
+  padding: 24px 20px 18px 22px;
+  border-radius: 13px;
+  box-shadow: 0 5px 20px #11131b33;
+  transition: transform 0.24s, box-shadow 0.19s, border 0.14s;
+  border: 1.5px solid #23272b;
+  position: relative;
+  overflow: hidden;
+}
+
+/* --- For reveal animation only! --- */
+.dull-to-clear-once {
+  opacity: 0;
+  filter: blur(7px) grayscale(0.7) brightness(0.9);
+  animation: dullToClear 1.2s cubic-bezier(.53,.01,.19,1.01) forwards;
+}
+
+@keyframes dullToClear {
+  0% {
+    opacity: 0;
+    filter: blur(16px) grayscale(0.85) brightness(0.6);
+  }
+  65% {
+    opacity: 0.7;
+    filter: blur(3px) grayscale(0.2) brightness(1.05);
+  }
+  100% {
+    opacity: 1;
+    filter: none;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.post-card h4 {
+  margin: 0 0 12px 0;
+  color: #ffe59b;
+  font-size: 1.28rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-shadow: 0 2px 8px #23272b60;
+  opacity: 0;
+  animation: textSectionReveal 0.7s 1.22s forwards;
+}
+.post-card p, .post-card small {
+  opacity: 0;
+  animation: textSectionReveal 0.7s 1.28s forwards;
+}
+.post-card small {
+  color: #8f97a8;
+  font-size: 0.93rem;
+  display: block;
+  margin-top: 14px;
+  text-align: right;
+}
+
+/* === 12. General Paragraph === */
+p {
+  font-size: 1.12rem;
+  line-height: 1.67;
+  color: #b1b8c7;
+  opacity: 0;
+  animation: textReveal 0.8s 1.2s forwards;
+}
+
+/* === 13. Footer === */
+footer {
+  text-align: center;
+  padding: 22px 10px 18px 10px;
+  font-size: 1.03rem;
+  color: #7a8393;
+  border-top: 2px solid #23272b;
+  margin-top: 55px;
+  background: #191b23;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0 -2px 22px #23272b22;
+  width: 100vw;
+  max-width: 980px;
+  animation-delay: 1s;
+  opacity: 0;
+  animation: dullToClear 1.18s 1s forwards;
+}
+
+/* === 14. Responsive Design === */
+@media screen and (max-width: 950px) {
+  .App, section, footer, header {
+    max-width: 99vw;
+    width: 99vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  h1 {
+    font-size: 2.1rem;
+  }
+  h2, .category-title {
+    font-size: 1.3rem;
+  }
+}
+@media screen and (max-width: 700px) {
+  header, section, .post-card, .category-section, footer {
+    border-radius: 10px;
+    max-width: 99vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  nav, .category-links {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .post-card {
+    padding: 16px 4vw 13px 4vw;
+  }
+  h1 {
+    font-size: 1.4rem;
+  }
+  h2, .category-title {
+    font-size: 1.04rem;
+  }
+  .posts-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === 15. Custom Scrollbar === */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #23272b;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(120deg, #272a34 30%, #23272b 100%);
+  border-radius: 9px;
+}
